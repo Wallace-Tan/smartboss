@@ -15,7 +15,7 @@ app = Flask(__name__)
 app.secret_key = secrets.token_hex(32)  # Generates a secure random key
 
 # Path to your Firebase service account key JSON file
-cred_path = 'Google SmartBoss/firebase_credentials.json'  # Replace with your actual path
+cred_path = 'firebase_credentials.json'  # Replace with your actual path
 
 # Your Firebase Database URL (Correct Format)
 database_url = 'https://smartboss-c0021-default-rtdb.asia-southeast1.firebasedatabase.app/'  # Replace with your actual URL
