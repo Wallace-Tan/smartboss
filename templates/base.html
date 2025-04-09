@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Boss</title>
+    <link rel="stylesheet" href="static/css/base.css" />
+
+</head>
+<body>
+    <div class="side-bar">
+        <span>Smart Boss</span>
+        <ul>
+            <li ><a href="/dashboard">
+                <img src="static/img/icon-graph.svg" alt="Home Icon" class="icon"> 
+                Dashboard
+                </a></li>
+            <li><a href="/startup">
+                <img src="static/img/icon-box.svg" alt="Startup Icon" class="icon">
+                Startup Mode
+            </a></li>
+            <li><a href="/simulation">
+                <img src="static/img/icon-lightbulb.svg" alt="Simulation Icon" class="icon"> 
+                Plan Simulation
+            </a></li>
+
+            <li><a href="/history">
+                <img src="static/img/icon-dashboard.svg" alt="Post-Evaluation Icon" class="icon">
+                Plan History
+            </a></li>
+            <li><a href="/profile">
+                <img src="static/img/icon-user.svg" alt="Profile Icon" class="icon"> 
+                Profile
+            </a></li>
+        </ul>
+    </div>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="static/js/base.js"></script>
+</body>
+
+</html>

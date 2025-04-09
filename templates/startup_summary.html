@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Startup First Stage Summary</h2>
+    <form method="POST" action="" class="form-container">
+        <div class="form-layout">
+
+            <div class="form-column">
+                <div class="form-side">
+                    <div class="label-above-left">
+                        <label for="initial-industry">Industry</label>
+                        <textarea class="auto-resize" rows="1" oninput="autoGrow(this)" id="initial-industry" name="initial-industry" disabled>{{ startup_data.industry }}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <div class="label-above-left">
+                        <label for="initial-startup-idea">Initial Startup Idea</label>
+                        <textarea class="auto-resize" rows="1" oninput="autoGrow(this)" id="initial-startup-idea" name="initial-startup-idea" disabled>{{ startup_data.startup_idea }}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <div class="label-above-left">  
+                        <label for="ai-service-description">Potential Service/Product Description</label>
+                        <textarea class="auto-resize" rows="1" oninput="autoGrow(this)" id="ai-service-description" name="ai-service-description" disabled>{{ product_service }}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <div class="label-above-left">
+                        <label for="ai-problem-addressed">Possible Problem/Need Addressed</label>
+                        <textarea class="auto-resize" rows="1" oninput="autoGrow(this)" id="ai-problem-addressed" name="ai-problem-addressed" disabled>{{ problem_solved }}</textarea>
+                    </div>  
+                </div>
+            </div>
+            <div class="form-column form-column-right">
+
+                <div class="form-side">  
+                    <div class="label-above-left">
+                        <label for="initial-company-size">Company Size</label>
+                        <textarea class="auto-resize" rows="1" oninput="autoGrow(this)" id="initial-company-size" name="initial-company-size" disabled>{{ startup_data.company_size }}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <div class="label-above-left">   
+                        <label for="ai-target-audience">Likely Target Audience</label>
+                        <textarea class="auto-resize" rows="1" oninput="autoGrow(this)" id="ai-target-audience" name="ai-target-audience" disabled>{{ target_audience }}</textarea>
+                    </div>  
+                </div>
+
+                <div class="form-group full-width">
+                    <div class="label-above-left">
+                        <label for="ai-unique-selling-proposition">Potential Unique Selling Proposition</label>
+                        <textarea class="auto-resize" rows="1" oninput="autoGrow(this)" id="ai-unique-selling-proposition" name="ai-unique-selling-proposition" disabled>{{ unique_selling_proposition }}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <div class="label-above-left">
+                        <label for="ai-market-considerations">Very General Market Considerations</label>
+                        <textarea class="auto-resize" rows="1" oninput="autoGrow(this)" id="ai-market-considerations" name="ai-market-considerations" disabled>{{ market_considerations }}</textarea>
+                    </div>
+                </div>
+
+                {% if future_enhancements %}
+                <h3>Future Enhancements (Optional)</h3>
+                <div class="form-group full-width">
+                    <label for="ai-future-enhancements">Future Enhancements</label>
+                    <textarea class="auto-resize" rows="1" oninput="autoGrow(this)" id="ai-future-enhancements" name="ai-future-enhancements" disabled>{{ future_enhancements }}</textarea>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+        <div class="centered-column">
+            <div class="form-button">
+                <button id="home-btn" type="button" onclick="window.location.href='/startup'">Back To Home Page</button>
+                <button id="download-pdf" disabled>Save As PDF File</button>
+            </div>
+        </div>
+    </form>
+
+<script>
+    function autoGrow(element) {
+        element.style.height = "auto"; // reset height
+        element.style.height = (element.scrollHeight) + "px"; // set height based on content
+        }
+
+    // Optional: apply to all on page load (for pre-filled content)
+    window.onload = () => {
+      document.querySelectorAll(".auto-resize").forEach(autoGrow);
+    };
+    </script>
+    
+{% endblock %}

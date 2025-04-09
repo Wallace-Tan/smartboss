@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content">
+    <h2>Startup First Stage Summary</h2>
+    <form method="POST" action="" class="form-container">
+        <div class="form-column centered-column">
+            <div class="form-group">
+                <label for="industry-summary">Industry</label>
+                <input type="text" id="industry-summary" name="industry-summary" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="company-size-summary">Company Size</label>
+                <input type="text" id="company-size-summary" name="company-size-summary" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="startup-idea-summary">Startup Idea</label>
+                <textarea id="startup-idea-summary" name="startup-idea-summary" disabled></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="service-description-summary">Potential Service/Product Description</label>
+                <textarea id="service-description-summary" name="service-description-summary" disabled></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="problem-addressed-summary">Possible Problem/Need Addressed</label>
+                <textarea id="problem-addressed-summary" name="problem-addressed-summary" disabled></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="target-audience-summary">Likely Target Audience</label>
+                <textarea id="target-audience-summary" name="target-audience-summary" disabled></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="unique-selling-proposition-summary">Potential Unique Selling Proposition</label>
+                <textarea id="unique-selling-proposition-summary" name="unique-selling-proposition-summary" disabled></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="market-considerations-summary">Very General Market Considerations</label>
+                <textarea id="market-considerations-summary" name="market-considerations-summary" disabled></textarea>
+            </div>
+        </div>
+
+        <div class="centered-column">
+            <div class="form-button">
+            <button id="home-btn" type="button" onclick="window.location.href='/simulation'">Back To Home Page</button>
+            <button id="save-btn" type="submit">Save As PDF File</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/simulation.css') }}" />
+</head>
+
+<div class="toggle-container">
+    <label class="switch">
+        <input type="checkbox" id="mode-switch">
+        <span class="slider"></span>
+    </label>
+    <div class="current-mode" id="current-mode-text">Guided Mode</div>
+</div>
+<h2>Marketing Simulation Questions</h2>
+<form method="post" class="half-width">
+    {% if choice == 'marketing' %}
+    <div class="form-side guided-input">
+        <label>Total Marketing Budget</label>
+        <input type="number" id="total-budget" name="total_budget">
+    </div>
+    <div class="form-side guided-input">
+        <label>Average Customer Value</label>
+        <input type="number" id="average-customer-value" name="average_customer_value">
+    </div>
+    <div class="form-side guided-input">
+        <label>Estimated Conversion Rate (%)</label>
+        <input type="number" id="conversion-rate" name="conversion_rate" step="0.01" min="0" max="100">
+    </div>
+    <div class="form-side guided-input">
+        <label>Target Audience Specificity (1-10)</label>
+        <input type="number" id="target-specificity" name="target_specificity" min="1" max="10">
+    </div>
+    <div class="form-side guided-input">
+        <label>Budget Allocation - Paid Ads (%)</label>
+        <input type="number" id="paid-ads-allocation" name="paid_ads_allocation" step="0.01" min="0" max="100">
+    </div>
+    <div class="form-side guided-input">
+        <label>Brand Awareness Level (1-10)</label>
+        <input type="number" id="brand-awareness" name="brand_awareness" min="1" max="10">
+    </div>
+    <div class="form-side guided-input">
+        <label>Industry Category</label>
+        <select id="industry" name="industry">
+            <option value="" selected disabled>Select Industry</option>
+            <option value="ecommerce">E-commerce</option>
+            <option value="saas">SaaS</option>
+            <option value="food_beverage">Food & Beverage</option>
+            <option value="education">Education</option>
+            <option value="healthcare">Healthcare</option>
+            <option value="other">Other</option>
+        </select>
+    </div>
+    <div class="form-group full-width" id="creative-mode" style="display: none;">
+        <label style="width: 25%;">Marketing Plan Description</label>
+        <textarea id="marketing_description" name="marketing_description" class="marketing_description" Describe your target and objectives..."></textarea>
+    </div>
+    <button type="submit">Generate Marketing Idea</button>
+    {% elif choice == 'investment' %}
+    <h3>Investment Simulation Questions</h3>
+    <div class="form-side guided-input">
+        <label>Total Initial Investment</label>
+        <input type="number" id="initial-investment" name="initial_investment">
+    </div>
+    <div class="form-side guided-input">
+        <label>Investment Needs Breakdown (e.g., Product, Marketing)</label>
+        <input type="text" id="investment-breakdown" name="investment_breakdown">
+    </div>
+    <div class="form-side guided-input">
+        <label>External Funding Seeking</label>
+        <input type="number" id="external-funding" name="external_funding">
+    </div>
+    <div class="form-side guided-input">
+        <label>Projected Revenue Streams (Next 3-5 Years)</label>
+        <textarea id="revenue-projections" name="revenue_projections" rows="3" placeholder="List key revenue sources, separated by newlines."></textarea>
+    </div>
+    <div class="form-side guided-input">
+        <label>Key Revenue Assumptions (e.g., Customer Growth Rate %)</label>
+        <input type="text" id="revenue-assumptions" name="revenue_assumptions">
+    </div>
+    <div class="form-side guided-input">
+        <label>Estimated Total Operating Expenses (Next 3-5 Years)</label>
+        <textarea id="operating-expenses" name="operating_expenses" rows="3" placeholder="List key expense categories, separated by newlines."></textarea>
+    </div>
+    <div class="form-side guided-input">
+        <label>Target Break-Even Point (Months or Revenue)</label>
+        <input type="text" id="break-even" name="break_even" placeholder="e.g., 18 months or $500,000">
+    </div>
+    <div class="form-side guided-input">
+        <label>Projected ROI for Investors (Over 3-5 Years %)</label>
+        <input type="number" id="roi" name="roi" step="0.01">
+    </div>
+    <div class="form-side guided-input">
+        <label>Key Milestones with Investment</label>
+        <textarea id="key-milestones" name="key_milestones" rows="3" placeholder="List key milestones, separated by newlines."></textarea>
+    </div>
+    <div class="form-group full-width" id="creative-mode-investment" style="display: none;">
+        <label>Investment Plan Description</label>
+        <textarea id="investment_description" name="investment_description" placeholder="Describe your investment strategy and goals..."></textarea>
+    </div>
+    <button type="submit">Simulate Investment</button>
+    {% elif category == 'human_resource' %}
+    <h3>Human Resource Simulation Questions</h3>
+    <p>Questions for Human Resource simulation will go here.</p>
+    <button type="submit">Simulate HR Plan</button>
+    {% elif category == 'product_analysis' %}
+    <h3>Product Analysis Simulation Questions</h3>
+    <p>Questions for Product Analysis simulation will go here.</p>
+    <button type="submit">Analyze Product</button>
+    {% elif category == 'competitor_analysis' %}
+    <h3>Competitor Analysis Simulation Questions</h3>
+    <p>Questions for Competitor Analysis simulation will go here.</p>
+    <button type="submit">Analyze Competitor</button>
+    {% endif %}
+</form>
+
+<script>
+const modeSwitch = document.getElementById('mode-switch');
+const guidedMode = document.querySelectorAll('#guided-mode');
+const creativeMode = document.getElementById('creative-mode');
+const currentModeText = document.getElementById('current-mode-text');
+
+modeSwitch.addEventListener('change', function() {
+    if (this.checked) {
+        // Hide the guided mode inputs
+        guidedMode.forEach(function(element) {
+            element.style.display = 'none';
+        });
+
+        // Show creative mode
+        creativeMode.style.display = 'block';
+        currentModeText.textContent = "Creative Mode";
+    } else {
+        // Show the guided mode inputs
+        guidedMode.forEach(function(element) {
+            element.style.display = 'flex';
+        });
+
+        // Hide creative mode
+        creativeMode.style.display = 'none';
+        currentModeText.textContent = "Guided Mode";
+    }
+});
+</script>
+    
+{% endblock %}

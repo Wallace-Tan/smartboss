@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Startup Mode</h2>
+    <form method="POST" action="" class="form-container">
+        <div class="form-column centered-column">
+            <div class="form-group">
+                <label for="industry">Industry</label>
+                <select id="industry" name="industry">
+                    <option value="" selected disabled>Select Industry</option>
+                    <option value="Food & Beverage">Food & Beverage</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Education">Education</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Services">Services</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="company-size">Company Size</label>
+                <select id="company-size" name="company_size">
+                    <option value="" selected disabled>Select Size</option>
+                    <option value="Sole Proprietor">Just me (Sole Proprietor)</option>
+                    <option value="Small team (2-5 people)">Small team (2-5 people)</option>
+                    <option value="Planning for a larger team (6-20 people)">Planning for a larger team (6-20 people)</option>
+                    <option value="Unsure">Unsure</option>
+                </select>
+            </div>
+            <div class="form-group full-width">
+                <label for="startup-idea">StartUp Idea</label>
+                <textarea id="startup-idea" name="startup_idea" class="form-control" rows="5" placeholder="What is your startup idea?" required></textarea>
+            </div>
+            <div class="form-button">
+                <button type="submit">Generate Idea</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

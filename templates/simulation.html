@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Plan Simulation</h2>
+    <form method="post" action="{{ url_for('simulation') }}" class="simulation-container">
+        <div class="card-grid">
+            <button class="card" type="submit" name="choice" value="marketing">
+                <h3 class="card-title">Marketing</h3>
+            </button>
+            <button class="card" type="submit" name="choice" value="human_resource" disabled>
+                <h3 class="card-title">Human Resource</h3>
+            </button>
+            <button class="card" type="submit" name="choice" value="investment" disabled>
+                <h3 class="card-title">Investment</h3>
+            </button>
+            <button class="card" type="submit" name="choice" value="product_analysis" disabled>
+                <h3 class="card-title">Product Analysis</h3>
+            </button>
+            <button class="card" type="submit" name="choice" value="competitor_analysis" disabled>
+                <h3 class="card-title">Competitor Analysis</h3>
+            </button>
+        </div>
+    </form>
+{% endblock %}

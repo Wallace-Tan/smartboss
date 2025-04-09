@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Prediction
+{% endblock %}
+
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0">Investment Decision Prediction</h2>
+                </div>
+                <div class="card-body">
+                    <form action="/prediction" method="POST">
+                        <div class="mb-3">
+                            <label for="industry" class="form-label">Industry</label>                            
+                            <select class="form-select" id="industry" name="industry" required>
+                                <option value="" disabled selected>Select Industry</option>
+                                <option value="Tech">Tech</option>
+                                <option value="Retail">Retail</option>
+                                <option value="Healthcare">Healthcare</option>
+                                <option value="Finance">Finance</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="company_size" class="form-label">Company Size</label>
+                            <select class="form-select" id="company_size" name="company_size" required>
+                                <option value="" disabled selected>Select Company Size</option>
+                                <option value="Startup">Startup</option>
+                                <option value="SME">SME</option>
+                                <option value="Enterprise">Enterprise</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="budget" class="form-label">Budget</label>
+                            <input type="text" class="form-control" id="budget" name="budget" placeholder="Available funds for investment, marketing, HR, etc." required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="risk_tolerance" class="form-label">Risk Tolerance</label>
+                            <select class="form-select" id="risk_tolerance" name="risk_tolerance" required>
+                                <option value="" disabled selected>Select Risk Tolerance</option>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="time_horizon" class="form-label">Time Horizon</label>
+                            <select class="form-select" id="time_horizon" name="time_horizon" required>
+                                <option value="" disabled selected>Select Time Horizon</option>
+                                <option value="Short-term: 6 months">Short-term: 6 months</option>
+                                <option value="Long-term: 5 years">Long-term: 5 years</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="market_conditions" class="form-label">Market Conditions</label>
+                            <select class="form-select" id="market_conditions" name="market_conditions" required>
+                                <option value="" disabled selected>Select Market Conditions</option>
+                                <option value="Growing">Growing</option>
+                                <option value="Stable">Stable</option>
+                                <option value="Declining">Declining</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="competitor_strength" class="form-label">Competitor Strength</label>
+                             <select class="form-select" id="competitor_strength" name="competitor_strength" required>
+                                <option value="" disabled selected>Select Competitor Strength</option>
+                                <option value="Weak">Weak</option>
+                                <option value="Moderate">Moderate</option>
+                                <option value="Strong">Strong</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="decision_type" class="form-label">Decision Type</label>
+                            <select class="form-select" id="decision_type" name="decision_type" required>
+                                <option value="" disabled selected>Select Decision Type</option>
+                                <option value="Investment">Investment</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="HR">HR</option>
+                                <option value="Product">Product</option>
+                                <option value="Competitor Analysis">Competitor Analysis</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Get Prediction</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

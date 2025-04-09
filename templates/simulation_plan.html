@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/simulation.css') }}" />
+</head>
+<h2>
+    Plan Simulation
+</h2>
+
+<div class="card-grid simulation-container">
+    <div class="card plan-card clickable" data-plan="lean_budget">
+        <h3 class="card-title">PLAN A</h3>
+        <div class="plan-description">
+            <p class="plan-name">LEAN BUDGET</p>
+            <p>Minimize costs while maintaining core functionality</p>
+        </div>
+    </div>
+
+    <div class="card plan-card clickable" data-plan="low_manpower">
+        <h3 class="card-title">PLAN B</h3>
+        <div class="plan-description">
+            <p class="plan-name">LOW MANPOWER</p>
+            <p>Reduce human involvement with automation and efficiency</p>
+        </div>
+    </div>
+
+    <div class="card plan-card clickable" data-plan="high_impact">
+        <h3 class="card-title">PLAN C</h3>
+        <div class="plan-description">
+            <p class="plan-name">HIGH IMPACT</p>
+            <p>Maximize reach, scalability, and effectiveness for greater success</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const planCards = document.querySelectorAll('.plan-card.clickable');
+
+    planCards.forEach(card => {
+        card.addEventListener('click', function() {
+            // Redirect the user to the appropriate page based on the selected plan
+            window.location.href = `/simulation_result`;
+        });
+    });
+</script>
+
+<style>
+    .plan-card.clickable {
+        cursor: pointer; /* Indicate that the card is clickable */
+    }
+    .plan-card.clickable:hover {
+        opacity: 0.9; /* Provide a visual feedback on hover */
+    }
+</style>
+{% endblock %}

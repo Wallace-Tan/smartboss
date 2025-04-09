@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Profile</h2>
+    {% if message %}
+        <p style="color: green;">{{ message }}</p>
+    {% endif %}
+    <form id="profile-form" class="form-container" method="POST" enctype="multipart/form-data">
+        <div class="form-button">
+            <button type="button" id="edit-btn" class="edit-btn" onclick="window.location.href ='http://127.0.0.1:5000/'">LOG OUT</button>
+            <button type="button" id="edit-btn" class="edit-btn" onclick="toggleEdit()">EDIT</button>
+            <button type="submit" id="update-btn" class="edit-btn" style="display: none;">UPDATE</button>
+            <button type="button" id="reset-btn" class="edit-btn" style="display: none;" onclick="toggleReset()">RESET</button>
+        </div>
+        <div class="form-layout">
+            <div class="form-column">
+                <div class="form-group">
+                    <label for="company-name">COMPANY NAME</label>
+                    <input type="text" id="company-name" name="company-name" value="{{ user_details.company_name | default('') }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="established-year">ESTABLISHED YEAR</label>
+                    <input type="number" id="established-year" name="established-year" min="1800" max="{{ current_year }}" value="{{ company_profile.established_year | default('') }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="company-email">COMPANY EMAIL</label>
+                    <input type="email" id="company-email" name="company-email" value="{{ company_profile.company_email | default('') }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="company-phone">COMPANY PHONE NUMBER</label>
+                    <input type="tel" id="company-phone" name="company-phone" value="{{ company_profile.company_phone | default('') }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="company-website">COMPANY WEBSITE</label>
+                    <input type="url" id="company-website" name="company-website" value="{{ company_profile.company_website | default('') }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="social-links">SOCIAL MEDIA LINKS</label>
+                    <input type="url" id="linkedin" name="linkedin" placeholder="LinkedIn" value="{{ company_profile.linkedin | default('') }}" disabled>
+                    <input type="url" id="twitter" name="twitter" placeholder="Twitter" value="{{ company_profile.twitter | default('') }}" disabled>
+                    <input type="url" id="facebook" name="facebook" placeholder="Facebook" value="{{ company_profile.facebook | default('') }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="company-address">COMPANY ADDRESS</label>
+                    <input type="text" id="address_line1" name="address_line1" placeholder="Address Line 1" value="{{ company_profile.address_line1 | default('') }}" disabled>
+                    <input type="text" id="address_line2" name="address_line2" placeholder="Address Line 2" value="{{ company_profile.address_line2 | default('') }}" disabled>
+                </div>
+
+                <div class="form-group form-layout">
+                    <input type="text" id="city" name="city" placeholder="City" value="{{ company_profile.city | default('') }}" disabled>
+                    <input type="number" id="postal_code" name="postal_code" placeholder="Postal Code" value="{{ company_profile.postal_code | default('') }}" disabled>
+                    <input type="text" id="state" name="state" placeholder="State" value="{{ company_profile.state | default('') }}" disabled>
+                </div>
+            </div>
+
+            <div class="form-column form-column-right">
+                <div class="form-group">
+                    <label for="mission">MISSION</label>
+                    <input type="text" id="mission" name="mission" value="{{ company_profile.mission | default('') }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="vision">VISION</label>
+                    <input type="text" id="vision" name="vision" value="{{ company_profile.vision | default('') }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="business-type">BUSINESS TYPE</label>
+                    <select id="business-type" name="business-type" disabled>
+                        <option {% if company_profile.business_type == 'Startup' %} selected {% endif %}>Startup</option>
+                        <option {% if company_profile.business_type == 'SME' %} selected {% endif %}>SME</option>
+                        <option {% if company_profile.business_type == 'Corporation' %} selected {% endif %}>Corporation</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="company-status">COMPANY STATUS</label>
+                    <select id="company-status" name="company-status" disabled>
+                        <option {% if company_profile.company_status == 'Active' %} selected {% endif %}>Active</option>
+                        <option {% if company_profile.company_status == 'Expanding' %} selected {% endif %}>Expanding</option>
+                        <option {% if company_profile.company_status == 'Rebranding' %} selected {% endif %}>Rebranding</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="company-size">COMPANY SIZE</label>
+                    <select id="company-size" name="company-size" disabled>
+                        <option {% if company_profile.company_size == '< 300' %} selected {% endif %}>&lt; 300</option>
+                        <option {% if company_profile.company_size == '300-1000' %} selected {% endif %}>300-1000</option>
+                        <option {% if company_profile.company_size == '> 1000' %} selected {% endif %}>&gt; 1000</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="industry">INDUSTRY</label>
+                    <select id="industry" name="industry" disabled>
+                        <option {% if company_profile.industry == 'Education' %} selected {% endif %}>Education</option>
+                        <option {% if company_profile.industry == 'Technology' %} selected {% endif %}>Technology</option>
+                        <option {% if company_profile.industry == 'Healthcare' %} selected {% endif %}>Healthcare</option>
+                        <option {% if company_profile.industry == 'Finance' %} selected {% endif %}>Finance</option>
+                        <option {% if company_profile.industry == 'Manufacturing' %} selected {% endif %}>Manufacturing</option>
+                        <option {% if company_profile.industry == 'Retail' %} selected {% endif %}>Retail</option>
+                        <option {% if company_profile.industry == 'Hospitality' %} selected {% endif %}>Hospitality</option>
+                        <option {% if company_profile.industry == 'Real Estate' %} selected {% endif %}>Real Estate</option>
+                        <option {% if company_profile.industry == 'Construction' %} selected {% endif %}>Construction</option>
+                        <option {% if company_profile.industry == 'Agriculture' %} selected {% endif %}>Agriculture</option>
+                        <option {% if company_profile.industry == 'Energy' %} selected {% endif %}>Energy</option>
+                        <option {% if company_profile.industry == 'Telecommunications' %} selected {% endif %}>Telecommunications</option>
+                        <option {% if company_profile.industry == 'Transportation & Logistics' %} selected {% endif %}>Transportation & Logistics</option>
+                        <option {% if company_profile.industry == 'Media & Entertainment' %} selected {% endif %}>Media & Entertainment</option>
+                        <option {% if company_profile.industry == 'Government & Public Administration' %} selected {% endif %}>Government & Public Administration</option>
+                        <option {% if company_profile.industry == 'Non-profit & Social Services' %} selected {% endif %}>Non-profit & Social Services</option>
+                        <option {% if company_profile.industry == 'Legal' %} selected {% endif %}>Legal</option>
+                        <option {% if company_profile.industry == 'Marketing & Advertising' %} selected {% endif %}>Marketing & Advertising</option>
+                        <option {% if company_profile.industry == 'Human Resources' %} selected {% endif %}>Human Resources</option>
+                        <option {% if company_profile.industry == 'Consulting' %} selected {% endif %}>Consulting</option>
+                        <option {% if company_profile.industry == 'Research & Development' %} selected {% endif %}>Research & Development</option>
+                        <option {% if company_profile.industry == 'Environmental Services' %} selected {% endif %}>Environmental Services</option>
+                        <option {% if company_profile.industry == 'Arts & Culture' %} selected {% endif %}>Arts & Culture</option>
+                        <option {% if company_profile.industry == 'Other' %} selected {% endif %}>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group form-column-right">
+                    <label for="target-audience">TARGET AUDIENCE & MARKET</label>
+                    <input type="text" id="target-audience" name="target-audience" value="{{ company_profile.target_audience | default('') }}" disabled>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="industry-keywords">INDUSTRY KEYWORDS & TAGS</label>
+                    <input type="text" id="industry-keywords" name="industry-keywords" value="{{ company_profile.industry_keywords | default('') }}" disabled>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="core-products">CORE PRODUCTS/SERVICES</label>
+                    <input type="text" id="core-products" name="core-products" value="{{ company_profile.core_products | default('') }}" disabled>
+                </div>
+
+            </div>
+            
+            <div class="form-column form-column-right">
+
+                <div class="form-group full-width">
+                    <label for="company-description">COMPANY DESCRIPTION</label>
+                    <textarea id="company-description" name="company-description" disabled>{{ company_profile.company_description | default('') }}</textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="revenue-model">REVENUE MODEL</label>
+                    <textarea id="revenue-model" name="revenue-model" disabled>{{ company_profile.revenue_model | default('') }}</textarea>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+    <script>
+        function toggleEdit() {
+            let inputs = document.querySelectorAll("input, select, textarea");
+            let editBtn = document.getElementById("edit-btn");
+            let updateBtn = document.getElementById("update-btn");
+            let resetBtn = document.getElementById("reset-btn");
+
+            inputs.forEach(input => {
+                console.log("Input value:", input.name);
+                input.disabled = !input.disabled; // Toggle disabled state
+            });
+
+            if (inputs[0].disabled) {
+                editBtn.style.display = "inline-block";
+                updateBtn.style.display = "none";
+            } else {
+                editBtn.style.display = "none";
+                updateBtn.style.display = "inline-block";
+                resetBtn.style.display = "inline-block";
+            }
+        }
+
+        function toggleReset() {
+            let inputs = document.querySelectorAll("input, select, textarea");
+            inputs.forEach(input => {
+                input.value = ""; // Reset value to empty string
+            });
+        }
+    </script>
+
+{% endblock %}
+
+

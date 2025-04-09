@@ -1,0 +1,474 @@
+:root{ 
+  --background: #4B4E6D;
+  --white : #FFFFFF;
+  --accent: #E5E8EC;
+}
+
+@font-face {
+  font-family: 'Gidole';
+  src: url('Fonts\Gidole-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+  font-family: "Gidole", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a{ 
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  margin: 0
+}
+
+h2 { 
+  font-weight: 800;
+  font-size: 40px;
+  letter-spacing: 1.5px;
+  padding-bottom: 20px;
+}
+
+span {
+  font-weight: 800;
+  font-size: 40px;
+  letter-spacing: 1.5px;
+  width:220px;
+}
+
+/*Side Bar*/
+div.side-bar { 
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  background-color: #000000;
+  padding-left: 16px;
+  width: fit-content;
+  letter-spacing: 2px;
+  align-items: center;
+  max-width: fit-content;
+  position: fixed; /* Make it fixed */
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.side-bar span{ 
+  color: #FFFFFF;
+  font-size: 30px;
+  padding: 30px 0;
+}
+
+.side-bar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.side-bar ul li {
+  padding: 15px;
+  cursor: pointer;
+  color: #FFFFFF;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.side-bar ul li a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.side-bar ul li a img.icon {
+  width: 40px;
+  height: 40px;
+}
+
+.side-bar ul li.active, .side-bar ul li:hover {
+  background: white;
+  color: black;
+  border-radius: 8px 0 0 8px;
+}
+
+.side-bar ul li.active img, .side-bar ul li:hover img{ 
+  filter: invert(1);
+}
+
+div.container-mt-5{
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
+
+.content{ 
+  padding: 30px;
+  width: 100%;
+  padding-bottom: 100px;
+  flex: 1;
+  margin-left: 250px;
+}
+
+.main-content {
+  display: flex;
+  width: 100%;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  padding-bottom: 50px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.edit-btn {
+  padding: 8px 16px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background: white;
+  cursor: pointer;
+}
+
+#marketing_desrciption{
+  width: 100%;
+  border: black;
+}
+
+.form-button{ 
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.form-layout {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 48%;
+}
+
+.form-column-right input[type=text]{
+  height: 40px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.form-side {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  width: 100%;
+}
+
+.form-side label{
+  width: 25%;
+}
+
+.form-side input{
+  width: 70%;
+}
+
+.form-side select{
+  width: 71.5%;
+}
+
+.form-group label{
+  display: block;
+}
+
+.form-group textarea.marketing_description{
+  width: 70%;
+  margin-left: 25%
+}
+
+.half-width button:hover{
+  color: white;
+  background-color: black;
+}
+
+label {
+  font-weight: bold;
+}
+
+.label-above-left {
+  display: flex;
+  flex-direction: column; /* Stack label above textarea */
+  align-items: flex-start; /* Align items to the left */
+  width: 100%;
+}
+
+.label-above-left label {
+  text-align: left; /* Ensure label text is left-aligned */
+  margin-bottom: 5px; /* Add some space below the label */
+  width: 100%; /* Make label take full width to ensure left alignment */
+}
+
+.label-above-left textarea {
+  width: 100%; /* Make textarea take full width */
+  text-align: left; /* Align text within textarea to the left */
+}
+
+#simulation-summary{
+  color:black;
+}
+
+#send-comment{
+  color:black;
+}
+
+#send-comment:hover{
+  color:white;
+  background-color: black;
+}
+
+input, select, textarea {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+textarea {
+  height: 250px;
+  resize: none;
+}
+
+textarea.auto-resize {
+  overflow: hidden;
+  resize: none; /* prevent manual resizing */
+  box-sizing: border-box;
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.5em;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 8px 16px;
+  border: 1px solid black;
+  border-radius: 15px;
+  background: white;
+  cursor: pointer;
+  max-width: fit-content;
+  letter-spacing: 2px;
+}
+
+input:disabled, 
+textarea:disabled, 
+select:disabled {
+    background-color: white; 
+    color: black; 
+    opacity: 1; 
+}
+
+form.half-width {
+  margin: auto;
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
+  align-items: center;
+  padding-top: 50px;
+}
+
+/* Toggle Button */ 
+.toggle-container {
+  display: flex;
+  justify-content: right;
+  margin-bottom: 20px;
+  align-items: center; /* Vertically center the label and switch */
+}
+
+.toggle-label {
+  margin-right: 10px;
+  font-size: 1rem;
+  color: #555;
+}
+
+label.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  margin:0;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 24px;
+  width: auto;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #000000;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.current-mode { 
+  font-weight: bold;
+  padding: 10px;
+}
+
+/* Plan History */
+.plan-history { 
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
+  width: 70%;
+  align-items: center;
+}
+.plan-history button { 
+  min-width: 80%;
+  height: 50px;
+  margin: 0;
+  text-align: left;
+  padding-left: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition */
+  cursor: pointer; /* Indicate clickable */
+}
+
+.plan-history label {
+  margin: 0;
+}
+
+.plan-history button:hover {
+  transform: scale(1.03); /* Slightly scale up on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+/* Plan Summary page */ 
+.plan-summary-container { 
+  display: flex;
+  gap: 10px;
+  flex-flow: column;
+  align-items: center;
+}
+
+.plan-summary { 
+  width: 80%;
+  height: 60vh;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  padding: 20px;
+  overflow: auto;
+}
+
+.plan-actions button{ 
+  margin: 0 20px;
+  min-width: 250px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan-actions button:hover {
+  transform: scale(1.03); /* Slightly scale up on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.card-grid {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 40px;
+  align-items: center;
+  margin-top: 20px;
+  width:1200px;
+  justify-content: center;
+}
+
+.card {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  padding: 20px;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex; /* Use flexbox for vertical centering of content */
+  align-items: center;
+  justify-content: center; /* horizontally center the content */
+  text-align: center;
+  min-width:300px;
+  min-height: 200px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+  font-size: 1.2rem;
+  color: #000000;
+}
+
+.simulation-container { 
+  margin: 50px auto;
+  text-align: center;
+}
+
+#predict-display .ai-paragraph {
+  margin-bottom: 5px; 
+  padding-bottom: 3px; 
+}
+
+#predict-display .ai-paragraph:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.user-message {
+  margin-bottom: 5px;
+  padding: 3px; 
+}
+
+.ai-message {
+  margin-bottom: 5px;
+  padding: 3px; 
+}

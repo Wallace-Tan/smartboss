@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Prediction Result
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-0">Startup Mode</h2>
+    <div class="card-body">
+        <div class="form-layout">
+            <div class="form-button">
+                <button id="startup-summary" class="btn btn-secondary mt-2" onclick="window.location.href='/startup_summary?uniqueId={{ uniqueId }}'">Startup Summary</button>
+            </div>
+        </div>         
+        <div id="predict-display" type="text" class="form-class full-width" style="width: 100%; height: 500px; overflow-y: auto; padding: 10px; background-color: #ffffff;">
+            <p><strong>Gemini Predict:</strong></p>
+            {% for paragraph in prediction_paragraphs %}
+                <p class="ai-paragraph">{{ paragraph }}</p>
+            {% endfor %}
+            <div id="conversation-history">
+                {% if conversation %}
+                    <hr>
+                    <h5>Conversation:</h5>
+                    {% for item in conversation %}
+                        <p class="{{ 'user-message' if item.startswith('You:') else 'ai-message' }}">{{ item }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="mt-3">
+            <input type="text" id="user-comment" class="form-group full-width" placeholder="Enter your question">
+        </div>
+        <input type="hidden" id="unique-id" value="{{ uniqueId }}">
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const userCommentInput = document.getElementById('user-comment');
+        const predictDisplay = document.getElementById('predict-display');
+        const uniqueIdInput = document.getElementById('unique-id');
+        const conversationHistoryDiv = document.getElementById('conversation-history');
+
+        function displayAIResponse(aiResponse) {
+            aiResponse.forEach(p => {
+                const pElement = document.createElement('p');
+                pElement.classList.add('ai-message');
+                pElement.textContent = `${p}`;
+                predictDisplay.appendChild(pElement);
+            });
+            predictDisplay.scrollTop = predictDisplay.scrollHeight;
+        }
+
+        function submitComment() {
+            const commentText = userCommentInput.value.trim();
+            const uniqueId = uniqueIdInput.value;
+
+            if (commentText && uniqueId) {
+                const userMessageElement = document.createElement('p');
+                userMessageElement.classList.add('user-message');
+                userMessageElement.textContent = `You: ${commentText}`;
+                predictDisplay.appendChild(userMessageElement);
+                conversationHistoryDiv.innerHTML += `<p class="user-message">You: ${commentText}</p>`;
+
+                userCommentInput.value = '';
+
+                fetch('/startup_submit_comment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `uniqueId=${encodeURIComponent(uniqueId)}&comment=${encodeURIComponent(commentText)}`,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        displayAIResponse(data.ai_response);
+                    } else {
+                        console.error("Error submitting comment:", data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error submitting comment:", error);
+                });
+            }
+        }
+
+        // Event listener for the Enter key press in the comment input
+        userCommentInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent newline in textarea or form submission
+                submitComment();
+            }
+        });
+
+        const initialPrediction = {{ prediction_paragraphs|safe }};
+        let initialPredictionHTML = '<p><strong>Gemini Predict:</strong></p>';
+        initialPrediction.forEach(p => {
+            initialPredictionHTML += `<p class="ai-paragraph">${p}</p>`;
+        });
+        predictDisplay.innerHTML = initialPredictionHTML;
+        predictDisplay.scrollTop = predictDisplay.scrollHeight;
+    });
+</script>
+{% endblock %}

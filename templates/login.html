@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="stylesheet" href="static/css/login.css" />
+</head>
+<body>
+    <div class="left-panel">
+        <img src="static/img/bg-signup.png" alt="">
+    </div>
+    <div class="right-panel">
+        <h2>LOGIN</h2>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <form method="POST">
+            <label for="email">EMAIL</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+            
+            <label for="password">PASSWORD</label>
+            <input type="password" id="password" name="password" required placeholder="Enter your password">
+            
+            <div class="options">
+                <div class="checkbox">
+                    <input class="input-box" type="checkbox" id="rememberMe">
+                    <label for="checkbox">Remember Me?</label>
+                </div>
+                <a href="#">Forget Password?</a>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+            <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign Up Here</a></p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("rememberMe").addEventListener("change", function() {
+            if (this.checked) {
+                alert("You will be remembered!");
+            } else {
+                alert("You will not be remembered!");
+            }
+        });
+    </script>
+
+</body>

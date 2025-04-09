@@ -1,0 +1,40 @@
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex; /* Use flexbox for vertical centering of content */
+    align-items: center;
+    justify-content: center; /* horizontally center the content */
+    text-align: left;
+    width:150px;
+
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-size: 1.2rem;
+    color: #000000;
+}
+
+h3.card-title{
+    text-align: center;
+}
+
+div.plan-description{
+    margin-left: 10%;
+}

@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Startup Prediction History</h2>
+
+    {% if startup_history %}
+        <ul>
+        {% for prediction_id, prediction in startup_history.items() %}
+            <li>
+                <h3>Prediction ID: {{ prediction_id }}</h3>
+                <button class="toggle-startup-details-btn" data-prediction-id="{{ prediction_id }}">Show Details</button>
+                <button class="btn btn-primary" onclick="window.location.href='/startup_summary?uniqueId={{ prediction_id }}'">View Result</button>
+                <div id="startup-details-{{ prediction_id }}" class="startup-prediction-details" style="display: none;">
+                    {% if prediction.industry %}
+                        <p><strong>Industry:</strong> {{ prediction.industry }}</p>
+                    {% endif %}
+                    {% if prediction.company_size %}
+                        <p><strong>Company Size:</strong> {{ prediction.company_size }}</p>
+                    {% endif %}
+                    {% if prediction.startup_idea %}
+                        <p><strong>Startup Idea:</strong> {{ prediction.startup_idea }}</p>
+                    {% endif %}
+                    {% if prediction.prediction_result %}
+                        <p><strong>Prediction Result:</strong></p>
+                        <ul>
+                        {% for item in prediction.prediction_result %}
+                            <li>{{ item }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <hr>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No startup prediction history available.</p>
+    {% endif %}
+
+    <h2>General Prediction History</h2>
+
+    {% if prediction_history %}
+        <ul>
+        {% for prediction_id, prediction in prediction_history.items() %}
+            <li>
+                <h3>Prediction ID: {{ prediction_id }}</h3>
+                <button class="toggle-general-details-btn" data-prediction-id="{{ prediction_id }}">Show Details</button>
+                <div id="general-details-{{ prediction_id }}" class="general-prediction-details" style="display: none;">
+                    {% if prediction.industry %}
+                        <p>Industry: {{ prediction.industry }}</p>
+                    {% endif %}
+                    {% if prediction.company_size %}
+                        <p>Company Size: {{ prediction.company_size }}</p>
+                    {% endif %}
+                    {% if prediction.budget %}
+                        <p>Budget: {{ prediction.budget }}</p>
+                    {% endif %}
+                    {% if prediction.risk_tolerance %}
+                        <p>Risk Tolerance: {{ prediction.risk_tolerance }}</p>
+                    {% endif %}
+                    {% if prediction.time_horizon %}
+                        <p>Time Horizon: {{ prediction.time_horizon }}</p>
+                    {% endif %}
+                    {% if prediction.market_conditions %}
+                        <p>Market Conditions: {{ prediction.market_conditions }}</p>
+                    {% endif %}
+                    {% if prediction.competitor_strength %}
+                        <p>Competitor Strength: {{ prediction.competitor_strength }}</p>
+                    {% endif %}
+                    {% if prediction.decision_type %}
+                        <p>Decision Type: {{ prediction.decision_type }}</p>
+                    {% endif %}
+                    {% if prediction.prediction_result %}
+                        <p><strong>Prediction Result:</strong> {{ prediction.prediction_result }}</p>
+                    {% endif %}
+                </div>
+                <hr>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No general prediction history available.</p>
+    {% endif %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const startupButtons = document.querySelectorAll('.toggle-startup-details-btn');
+            startupButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const predictionId = this.dataset.predictionId;
+                    const detailsDiv = document.getElementById(`startup-details-${predictionId}`);
+                    detailsDiv.style.display = detailsDiv.style.display === 'none' ? 'block' : 'none';
+                    this.textContent = detailsDiv.style.display === 'none' ? 'View Details' : 'Hide Details';
+                });
+            });
+
+            const generalButtons = document.querySelectorAll('.toggle-general-details-btn');
+            generalButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const predictionId = this.dataset.predictionId;
+                    const detailsDiv = document.getElementById(`general-details-${predictionId}`);
+                    detailsDiv.style.display = detailsDiv.style.display === 'none' ? 'block' : 'none';
+                });
+            });
+        });
+    </script>
+{% endblock %}
+
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButtons = document.querySelectorAll('.toggle-details-btn');
+
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const predictionId = this.dataset.predictionId;
+                    const detailsDiv = document.getElementById('details-' + predictionId);
+                    const buttonText = this.textContent;
+
+                    if (detailsDiv.style.display === 'none') {
+                        detailsDiv.style.display = 'block';
+                        this.textContent = 'Hide Details';
+                    } else {
+                        detailsDiv.style.display = 'none';
+                        this.textContent = 'Show Details';
+                    }
+                });
+            });
+        });
+    </script> -->
+
+    <!-- <style>
+        .prediction-details {
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style> -->
